@@ -1,0 +1,15 @@
+# from tkinter import *
+# window=Tk()
+# window.title("simple")
+# window.geometry("500x700")
+# window.config(bg="yellow")
+# mainloop()
+from tkinter import *
+window=Tk()
+window.title("simple")
+window.geometry("500x700")
+window.config(bg="yellow")
+frame1=Frame(window,bg="red",width=300,height=300)
+frame2=Frame(window,bg="red",width=300,height=300)
+frame1.pack(side=TOP)
+frame2.pack(side=BOTOM)

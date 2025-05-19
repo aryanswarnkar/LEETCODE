@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    footer {
+  text-align: center;
+  padding: 2rem;
+  background-color: #dc6868; /* optional: footer background */
+  color: #fff;
+}
+
+footer .social-links {
+  margin-bottom: 1rem;
+}
+
+footer .social-links a {
+  color: #fff;
+  font-size: 1.5rem;
+  margin: 0 1rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+footer .social-links a:hover {
+  color: #00acee; /* or any hover color */
+}
+
+    :root {
+      --primary-color: #007BFF;
+      --secondary-color: #28a745;
+      --bg-color: #ffffff;
+      --text-color: #343a40;
+      --card-bg: rgba(255, 255, 255, 0.8);
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #1a1a1a;
+      --text-color: #ffffff;
+      --card-bg: rgba(255, 255, 255, 0.1);
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background 0.3s ease;
+    }
+
+    header {
+      background-color: var(--card-bg);
+      backdrop-filter: blur(16px);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-color);
+    }
+
+    .hamburger {
+      display: none;
+      cursor: pointer;
+    }
+
+    .theme-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-color);
+      font-size: 1.2rem;
+    }
+
+    .hero-section {
+      text-align: center;
+      padding: 8rem 2rem;
+      background: conic-gradient(from 45deg, #f4f4f4, #e9ecef, #f4f4f4);
+    }
+
+    .hero-title {
+      font-size: clamp(1.5rem, 5vw, 2.5rem);
+      margin-bottom: 1.5rem;
+    }
+
+    .description {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .fadeIn span {
+      opacity: 0;
+      animation: fadeIn 0.5s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .bold {
+      font-weight: bold;
+    }
+
+    .wave-divider {
+      position: relative;
+      width: 100%;
+      height: 100px;
+      overflow: hidden;
+    }
+
+    .wave-divider svg {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .wave-divider svg path {
+      fill: var(--bg-color);
+    }
+
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card i {
+      color: var(--primary-color);
+    }
+
+    .section-title {
+      text-align: center;
+      margin: 4rem 0;
+      font-size: 2.5rem;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.2rem;
+    }
+
+    .contact-item i {
+      font-size: 1.5rem;
+      color: var(--primary-color);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1001;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-content {
+      background-color: var(--card-bg);
+      margin: 15% auto;
+      padding: 20px;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 600px;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--card-bg);
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem 0;
+        box-shadow: var(--shadow);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="nav-container">
+      <h1>My Portfolio</h1>
+      <div class="nav-links">
+        <a href="#leetcode">LeetCode</a>
+        <a href="#linkedin">LinkedIn</a>
+        <a href="#github">GitHub</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+        <button class="theme-toggle" id="theme-toggle">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+      <button class="hamburger">
+        <i class="fas fa-bars"></i>
+      </button>
+    </nav>
+  </header>
+
+  <section class="hero-section">
+    <h1 class="hero-title fadeIn"></h1>
+    <p class="description">As an enthusiastic AI/ML student fueled by a passion for emerging technologies, I strive to harness the transformative power of artificial intelligence to address real-world challenges. My focus lies in Generative AI, deep learning, and the evolving machine learning ecosystem, where I aim to bridge theory with impactful solutions. With a strong foundation in Python, C++, and frameworks like TensorFlow and PyTorch, I am committed to staying ahead of trends, building intelligent systems, and contributing to projects that make a difference. I'm eager to collaborate, innovate, and constantly learn in this dynamic and ever-expanding field.</p>
+  </section>
+
+  <div class="wave-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none">
+      <path d="M0 100 Q 250 80 500 100 Q 750 120 1000 100 L1000 0 L0 0 Z"></path>
+    </svg>
+  </div>
+
+  <section id="leetcode">
+    <h2 class="section-title">LeetCode Stats</h2>
+    <div class="card-container">
+      <div class="card">
+        <h3><i class="fas fa-code"></i>Problem Solving</h3>
+        <p>Solved 500+ problems with 75%+ accuracy</p>
+        <div class="stats">
+          <p>Easy: 200</p>
+          <p>Medium: 250</p>
+          <p>Hard: 50</p>
+        </div>
+        <a href="https://leetcode.com/u/aryanswarnkar685/" target="_blank" class="btn">
+          View Profile <i class="fas fa-external-link-alt"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="linkedin">
+    <h2 class="section-title">LinkedIn</h2>
+    <div class="card-container">
+      <div class="card">
+        <h3><i class="fab fa-linkedin"></i>Connect with me</h3>
+        <p>View my LinkedIn profile to learn more about my professional journey and network.</p>
+        <a href="https://www.linkedin.com/in/aryan-swarnkar-a87541300/" target="_blank" class="btn">
+          View Profile <i class="fas fa-external-link-alt"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="github">
+    <h2 class="section-title">GitHub Activity</h2>
+    <div class="card-container">
+      <div class="card">
+        <h3><i class="fab fa-github"></i>Recent Activity</h3>
+        <div class="repo-card">
+          <h4>Portfolio Website</h4>
+          <p>Latest commit: 2 days ago</p>
+          <div class="language">
+            <span class="dot"></span> HTML/CSS
+          </div>
+        </div>
+        <a href="https://github.com/your_username" target="_blank" class="btn">
+          Explore More <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2 class="section-title">Featured Projects</h2>
+    <div class="card-container">
+      <div class="card">
+        <h3><i class="fas fa-laptop-code"></i>Portfolio Website</h3>
+        <p>Responsive portfolio with dark mode and animations</p>
+        <div class="tech-stack">
+          <span title="HyperText Markup Language">HTML</span>
+          <span title="Cascading Style Sheets">CSS</span>
+          <span title="JavaScript">JavaScript</span>
+        </div>
+        <button class="view-details" data-project="1">View Details</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 class="section-title">Contact Me</h2>
+    <p>Feel free to reach out to me via any of the following methods:</p>
+    <div class="contact-info">
+      <div class="contact-item">
+        <i class="fas fa-envelope"></i>
+        <a href="aryanswarnkar685@gmail.com">aryanswarnkar685@gmail.com"</a>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-phone"></i>
+        <a href="916393288265">+91-6393288265</a>
+      </div>
+      <div class="contact-item">
+        <i class="fab fa-instagram"></i>
+        <a href="https://www.instagram.com/real.aryan.ly?igsh=MXN1OWJ3dGc5NHI1aA==">@real.aryan.ly</a>
+      </div>
+      <div class="contact-item">
+        <i class="fab fa-snapchat"></i>
+        <a href="https://www.snapchat.com/add/your_snapchat">aryan_swarnkar</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/aryan-swarnkar-a87541300/"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/your_username"><i class="fab fa-github"></i></a>
+      <a href="aryanswarnkar685@gmail.com"><i class="fas fa-envelope"></i></a>
+    </div>
+    <p>© 2025 Aryan Swarnkar. All rights reserved.</p>
+  </footer>
+
+  <div id="projectModal" class="modal">
+    <div class="modal-content">
+      <span class="close">×</span>
+      <h2 id="modalTitle"></h2>
+      <p id="modalDescription"></p>
+      <div id="modalTechStack" class="tech-stack"></div>
+      <a id="modalLink" href="#" target="_blank">View Project</a>
+    </div>
+  </div>
+
+  <script>
+    // Theme Toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-theme');
+      const isDark = document.body.classList.contains('dark-theme');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      themeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    });
+
+    // Hamburger Menu
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Smooth Scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Hero Section Word-by-Word Fade-In
+    document.addEventListener('DOMContentLoaded', () => {
+      const text = "ARYAN SWARNKAR Undergraduate AI & ML Engineer at PSIT Kanpur Python | C++ | Django | Flask | NumPy | Pandas | TensorFlow | SQL | Git & GitHub | REST APIs | GENERATIVE AI | leetcode 400+";
+      const words = text.split(' ');
+      const wrappedWords = words.map((word, index) => {
+        let className = '';
+        if (index < 2) {
+          className = 'bold';
+        }
+        return `<span class="${className}">${word}</span>`;
+      });
+      const html = wrappedWords.join(' ');
+      const h1 = document.querySelector('.hero-title.fadeIn');
+      h1.innerHTML = html;
+
+      const spans = h1.querySelectorAll('span');
+      spans.forEach((span, index) => {
+        span.style.animationDelay = `${index * 0.2}s`;
+      });
+    });
+
+    // Modal Functionality
+    const projects = [
+      {
+        id: 1,
+        title: "Portfolio Website",
+        description: "A responsive portfolio website built with HTML, CSS, and JavaScript, featuring dark mode and animations.",
+        techStack: ["HTML", "CSS", "JavaScript"],
+        link: "https://github.com/your_username/portfolio"
+      }
+    ];
+
+    document.querySelectorAll('.view-details').forEach(button => {
+      button.addEventListener('click', () => {
+        const projectId = button.getAttribute('data-project');
+        const project = projects.find(p => p.id == projectId);
+        if (project) {
+          document.getElementById('modalTitle').textContent = project.title;
+          document.getElementById('modalDescription').textContent = project.description;
+          const techStackDiv = document.getElementById('modalTechStack');
+          techStackDiv.innerHTML = '';
+          project.techStack.forEach(tech => {
+            const span = document.createElement('span');
+            span.textContent = tech;
+            techStackDiv.appendChild(span);
+          });
+          document.getElementById('modalLink').href = project.link;
+          document.getElementById('projectModal').style.display = 'block';
+        }
+      });
+    });
+
+    // Close Modal
+    var modal = document.getElementById('projectModal');
+    var span = document.getElementsByClassName('close')[0];
+    span.onclick = function() {
+      modal.style.display = 'none';
+    }
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = 'none';
+      }
+    }
+  </script>
+</body>
+
+</html>

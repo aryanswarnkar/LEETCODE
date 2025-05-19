@@ -1,0 +1,2 @@
+s = "babad"
+# Output: "bab"
