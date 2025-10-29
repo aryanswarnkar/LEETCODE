@@ -1,0 +1,22 @@
+class Solution:
+    def smallestNumber(self, n: int) -> int:
+        if n==1:
+            return 1
+        if 2<=n<4:
+            return 3
+        if 4<=n<8:
+            return 7
+        if 8<=n<16:
+            return 15
+        if 16<=n<32:
+            return 31
+        if 32<=n<64:
+            return 63
+        if 64<=n<128:
+            return 127
+        if 128<=n<256:
+            return 255
+        if 256<=n<512:
+            return 511
+        if n>512:
+            return 1023    
